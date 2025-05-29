@@ -6,23 +6,103 @@
     <title>Campus Connect</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+</head><style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .teconect-logo {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .header-nav {
+            display: flex;
+            gap: 10px;
+        }
+        .header-nav button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: inherit;
+            transition: background-color 0.3s ease;
+        }
+        .header-nav button:hover {
+            background-color: #333; /* Un negro más oscuro al pasar el ratón */
+        }
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .module {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .module img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            transition: filter 0.3s ease;
+        }
+        .module img:hover {
+            filter: brightness(80%);
+        }
+        .module h3 {
+            margin-top: 0;
+        }
+        .ver-grupo-btn {
+            background-color: #e53935; /* Rojo similar */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: opacity 0.3s ease;
+        }
+        .ver-grupo-btn:hover {
+            opacity: 0.8;
+        }
+        .main-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .highlight-primer {
+            padding: 0 5px;
+        }
+        .math-formula {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">CAMPUS CONNECT</a>
-            <div>
-                <a href="#" class="mx-2">Publicaciones</a>
-                <a href="#" class="mx-2">Bolsa de Trabajo</a>
+    <header class="header-container">
+        <div class="teconect-logo">TecConect</div>
+        <nav class="header-nav">
+           
+           <a href="bolsa.html">
+                        <button>Bolsa de Trabajo</button>
                 <a href="Gruposdeestudio.html">
                     <button>Ver Grupos de Estudio</button>
-                    <a href="PROTOTIPO_PERFIL.html">
+                    <a href="perfil.html">
                         <button>Perfil</button>
-            </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Sección Principal -->
     <div class="container text-center my-5">
@@ -37,42 +117,49 @@
         <div class="row">
             <div class="col-md-4">
                 <img src="algebralineal.jpg" class="card-img-top" alt="Álgebra Lineal">
-                <h5>Algebra Lineal</h5>
+                <h5>1er Semestre</h5>
                 <p>"El talento gana partidos, pero el trabajo en equipo y la inteligencia ganan campeonatos". - Michael Jordan</p>
             </div>
             <div class="col-md-4">
                 <img src="calculoint.jpg" class="card-img-top" alt="Cálculo Integral">
-                <h5>Calculo Integral</h5>
+                <h5>2do Semestre</h5>
                 <p>"Solos podemos hacer poco, juntos podemos hacer mucho". - Hellen Keller</p>
             </div>
             <div class="col-md-4">
                 <img src="ecua.jpg" class="card-img-top" alt="Ecuaciones">
-                <h5>Ecuaciones Diferenciales</h5>
+                <h5>3er Semestre</h5>
                 <p>"La unión hace la fuerza y la discordia la debilita". - Esopo</p>
             </div>
             <div class="col-md-4">
                 <img src="telecom.jpg" class="card-img-top" alt="Telecomunicaciones">
-                <h5>Telecomunicaciones</h5>
+                <h5>4to Semestre</h5>
                 <p>"Solos podemos hacer poco, juntos podemos hacer mucho". - Hellen Keller</p>
             </div>
             <div class="col-md-4">
                 <img src="sistemop.jpeg" class="card-img-top" alt="Sistemas Operativos">
-                <h5>Sistemas Operativos</h5>
+                <h5>5to Semestre</h5>
                 <p>"La unión hace la fuerza y la discordia la debilita". - Esopo</p>
             </div>
             <div class="col-md-4">
                 <img src="principioselec.jpeg" class="card-img-top" alt="Principios Eléctricos">
-                <h5>Principios Electricos</h5>
+                <h5>6to Semestre</h5>
                 <p>"Solos podemos hacer poco, juntos podemos hacer mucho". - Hellen Keller</p>
             </div>
         </div>
     </div>
-    <footer class="text-center p-3 bg-light">
-        <a href="Gruposdeestudio.html">
-            <button>Ver Grupos de Estudio</button>
-        </a>
-        
-    </footer>
+   <style>
+  .boton-animado {
+    transition: transform 0.3s ease-in-out; /* Transición suave para la animación */
+  }
+
+  .boton-animado:hover {
+    transform: scale(1.05); /* Escala el botón ligeramente al pasar el ratón */
+  }
+</style>
+
+<a href="Gruposdeestudio.html">
+  <button class="boton-animado">Ver Grupos de Estudio</button>
+</a>
 
     <!-- Bolsa de Trabajo -->
     <div class="container my-5">
@@ -95,8 +182,19 @@
                 -Conocimientos en: Procedimientos Normalizados de Operación para el uso adecuado de los sistemas.
                 -Sistemas ERP, Redes LAN, WAN, Red privada Virtual VPN, SQL</p>
         </div>
-        <button class="btn btn-dark">Buscar</button>
-        <button class="btn btn-outline-dark">Mandar CVV</button>
+        <style>
+  .boton-animado {
+    transition: transform 0.3s ease-in-out; /* Transición suave para la animación */
+  }
+
+  .boton-animado:hover {
+    transform: scale(1.05); /* Escala el botón ligeramente al pasar el ratón */
+  }
+</style>
+
+<a href="bolsa.html">
+  <button class="boton-animado">Ver Bolsa de Trabajo</button>
+</a>
     </div>
 
     <!-- Proyectos Elaborados -->
@@ -136,10 +234,9 @@
     </div>
 
     <!-- Footer -->
-    <footer class="text-center p-3 bg-light">
-        <button class="btn btn-dark">Control Escolar</button>
-        <button class="btn btn-outline-dark">Soporte</button>
-    </footer>
+   <footer class="text-center p-3 bg-light">
+    <a href="http://sce.test.edu.mx/" class="btn btn-dark">Control Escolar</a>
+</footer>
 
 </body>
 </html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quinto Semestre - ¡Explora tus Materias!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header-container {
+            width: 100%;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            display: flex; /* Usamos flexbox para alinear elementos */
+            justify-content: flex-start; /* Alinea los elementos al inicio (izquierda) */
+            align-items: center; /* Centrar verticalmente */
+            position: relative; /* Necesario para que el h1 pueda posicionarse absolutamente */
+            min-height: 80px; /* Asegura un alto mínimo para el header */
+        }
+
+        .header-title {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            /* Posicionamiento absoluto para centrar el título independientemente de los botones */
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap; /* Evita que el título se rompa */
+            z-index: 1; /* Asegura que el título esté por encima de otros elementos si se superponen */
+            padding: 0 20px; /* Espacio para que no toque los botones en pantallas pequeñas */
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 15px;
+            z-index: 2; /* Asegura que los botones estén por encima del título */
+            /* No necesitamos flex-grow o justify-content aquí, ya están al inicio por default */
+        }
+
+        .header-nav button {
+            background-color: #3498db;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .header-nav button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* --- Resto del CSS se mantiene igual al anterior --- */
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .module {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .module:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .module h3 {
+            color: #3498db;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .module img {
+            width: 100px;
+            height: auto;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ver-grupo-btn {
+            display: inline-block;
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: auto;
+        }
+
+        .ver-grupo-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .video-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-overlay.active {
+            display: flex;
+        }
+
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #fff;
+            font-size: 2.5em;
+            cursor: pointer;
+            z-index: 1001;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <header class="header-container">
+        <nav class="header-nav">
+            <a href="bolsa.html">
+                <button>Bolsa de Trabajo</button>
+            </a>
+            <a href="Gruposdeestudio.html">
+                <button>Ver Grupos de Estudio</button>
+            </a>
+            <a href="perfil.html">
+                <button>Perfil</button>
+            </a>
+        </nav>
+        
+    </header>
+
+    <h1 class="main-title">
+        <span class="highlight-primer">SEXTO</span> SEMESTRE ING. SISTEMAS COMPUTACIONALES
+    </h1>
+
+    <div class="container">
+        <div class="module">
+            <h3>Redes</h3>
+            <img src="redes.jpg" alt="Fubdamentos de Investigacion" width="100">
+            <a href="#" class="ver-grupo-btn" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0">Ver Video</a>
+        </div>
+
+        <div class="module">
+            <h3>Programación Web</h3>
+            <img src="web.jpg" alt="Programación Web" width="100">
+            <a href="#" class="ver-grupo-btn" data-video-url="https://www.youtube.com/embed/RF_R48c1TzM?autoplay=1&rel=0">Ver Video</a>
+        </div>
+
+        <div class="module">
+            <h3> Adminiistracion Bases de Datos</h3>
+            <img src="base.jpg" alt="Bases de Datos" width="100">
+            <a href="#" class="ver-grupo-btn" data-video-url="https://www.youtube.com/embed/rP3iM7W-nFw?autoplay=1&rel=0">Ver Grupo</a>
+        </div>
+
+        <div class="module">
+            <h3>Lenguajes y Automatas I</h3>
+            <img src="aut.jpg" alt="Sistemas Operativos" width="100">
+            <a href="#" class="ver-grupo-btn" data-video-url="https://www.youtube.com/embed/Z5wL0z2nJzM?autoplay=1&rel=0">Ver Grupo</a>
+        </div>
+
+        <div class="module">
+            <h3>Ingeniería de Software</h3>
+            <img src="softw.jpg" alt="Ingeniería de Software" width="100">
+            <a href="#" class="ver-grupo-btn" data-video-url="https://www.youtube.com/embed/Yp9aK_g2fGg?autoplay=1&rel=0">Ver Grupo</a>
+        </div>
+
+        <div class="module">
+            <h3>Lenguajes de Interfaz</h3>
+            <img src="interfaz.jpg" alt="Matemáticas Discretas" width="100">
+            <a href="#" class="ver-grupo-btn" data-video-url="https://www.youtube.com/embed/Xq407sE-d5U?autoplay=1&rel=0">Ver Grupo</a>
+        </div>
+    </div>
+
+    <div class="video-overlay" id="videoOverlay">
+        <span class="close-btn" id="closeVideoBtn">×</span>
+        <div class="video-container">
+            <iframe id="youtubeVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const verGrupoBtns = document.querySelectorAll('.ver-grupo-btn');
+
+        verGrupoBtns.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault(); // Evita el comportamiento por defecto del enlace
+                const videoUrl = button.dataset.videoUrl;
+
+                if (videoUrl) {
+                    window.open(videoUrl, '_blank'); // Abre el enlace en una nueva pestaña
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
